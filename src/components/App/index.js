@@ -1,7 +1,8 @@
-import Login from './Login';
 import { connect } from 'react-redux';
+
+import App from './App';
 import { getUi, getUser } from '../../store/selectors';
-import { fetchLogin } from '../../store/actions';
+import { logout } from '../../store/actions';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -11,12 +12,10 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = {
-  loginUser: fetchLogin,
+  logoutUser: logout
 };
 
 const connected = connect(mapStateToProps, mapDispatchToProps);
-const LoginConnected = connected(Login);
+const AppConnected = connected(App);
 
-
-export default LoginConnected;
-
+export default AppConnected;

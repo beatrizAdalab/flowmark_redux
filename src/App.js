@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
 import Login from './components/Login';
 import Register from './components/Register';
 import ErrorBoundary from './ErrorBoundary'
@@ -11,10 +13,9 @@ import EditClassifieds from './components/EditClassified'
 import NewClassified from './components/NewClassified'
 
 
-class App extends Component {
-
-  render() {
-    return (
+export default function App({ store }) {
+  return (
+    <Provider store={store}>
       <Router>
         <ErrorBoundary>
           <LoginContext>
@@ -35,9 +36,9 @@ class App extends Component {
           </LoginContext>
         </ErrorBoundary>
       </Router>
-    );
-  }
+    </Provider>
+  );
 }
 
-export default App;
+
 
