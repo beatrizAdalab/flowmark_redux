@@ -68,3 +68,9 @@ export const fetchLogin = (userName, userPassword) =>
       dispatch(fetchLoginFailure(errorLogin));
     }
   };
+
+export const saveUserData = (userName, userPassword) => ({
+  type: TYPES.SET_USER,
+  userName,
+  userPassword
+});

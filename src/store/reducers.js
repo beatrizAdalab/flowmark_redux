@@ -6,7 +6,7 @@ const stateInitial = {
   user: {
     login: false,
     register: false,
-    error: '',
+    errorLogin: '',
     errorRegister: '',
     userName: '',
     userPassword: ''
@@ -27,10 +27,7 @@ export function user(state = stateInitial.user, action) {
     case TYPES.FETCH_REGISTER_SUCCESS:
       return {
         ...state,
-        login: false,
         register: true,
-        error: '',
-        errorRegister: '',
         userName: action.userName,
         userPassword: action.userPassword,
       }
@@ -38,12 +35,39 @@ export function user(state = stateInitial.user, action) {
     case TYPES.FETCH_REGISTER_FAILURE:
       return {
         ...state,
-        login: false,
         register: false,
-        error: '',
         errorRegister: action.errorRegister,
         userName: '',
         userPassword: '',
+      }
+
+    case TYPES.FETCH_LOGIN_REQUEST:
+      return {
+        ...state
+      }
+
+    case TYPES.FETCH_LOGIN_SUCCESS:
+      return {
+        ...state,
+        login: true,
+        userName: action.userName,
+        userPassword: action.userPassword,
+      }
+
+    case TYPES.FETCH_LOGIN_FAILURE:
+      return {
+        ...state,
+        login: false,
+        errorLogin: action.errorLogin,
+        userName: '',
+        userPassword: '',
+      }
+
+    case TYPES.SET_USER:
+      return {
+        ...state,
+        userName: action.userName,
+        userPassword: action.userPassword,
       }
 
     case TYPES.USER_LOGOUT:
@@ -51,7 +75,7 @@ export function user(state = stateInitial.user, action) {
         ...state,
         login: false,
         register: false,
-        error: '',
+        errorLogin: '',
         errorRegister: '',
         userName: '',
         userPassword: '',
@@ -61,6 +85,7 @@ export function user(state = stateInitial.user, action) {
       return state;
   }
 };
+
 
 
 export function ui(state = stateInitial.ui, action) {

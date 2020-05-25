@@ -24,7 +24,7 @@ export default function App({ user }) {
             <Switch>
               <Route path='/register' component={Register} />
               <Route path='/login' component={Login} />
-              <PrivateRoute path='/listClassifieds/' ren component={ListClassifieds} />
+              <PrivateRoute path='/listClassifieds/' component={ListClassifieds} />
               <PrivateRoute path='/detailClassifieds/:id' component={DetailClassifieds} />
               <PrivateRoute path='/editClassifieds/:id' component={EditClassifieds} />
               <PrivateRoute path='/newClassified' component={NewClassified} />

@@ -1,7 +1,7 @@
 import Login from './Login';
 import { connect } from 'react-redux';
 import { getUi, getUser } from '../../store/selectors';
-import { fetchLogin } from '../../store/actions';
+import { fetchLogin, saveUserData } from '../../store/actions';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -12,6 +12,7 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = {
   loginUser: fetchLogin,
+  saveUserData
 };
 
 const connected = connect(mapStateToProps, mapDispatchToProps);

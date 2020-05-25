@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import userStorage from '../../storage'
 
 
-function Login({ loginUser, user }) {
+function Login({ loginUser, saveUserData, user }) {
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
@@ -15,24 +15,25 @@ function Login({ loginUser, user }) {
     const checkLogin = async (e) => {
         e.preventDefault()
         loginUser(userName, userPassword)
+        userStorage.setUser({ userName, userPassword })
     }
 
     useEffect(() => {
         const dataUser = userStorage.getUser();
         setUserName(dataUser.userName);
         setUserPassword(dataUser.userPassword)
-        //falta guardarlo en redux
+        saveUserData(dataUser.userName, dataUser.userPassword)
     }, [])
 
     return (
         <Fragment>
             {user.login ? renderRedirect() :
                 <div className='container-access container pt-4'>
-                    {user.error ?
+                    {user.errorLogin ?
                         <div className='alert alert-danger' role='alert'>
-                            Ups.. {user.error}
+                            Ups.. {user.errorLogin}
                         </div> : < div className='alert alert-danger invisible ' role='alert'>
-                            Ups.. {user.error}
+                            Ups.. {user.errorLogin}
                         </div>
                     }
 
