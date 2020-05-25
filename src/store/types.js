@@ -8,7 +8,6 @@ export const FETCH_LOGIN_SUCCESS = 'FETCH_LOGIN_SUCCESS';
 export const FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE';
 
 export const SET_USER = 'SET_USER';
-//export const GET_USER = 'GET_USER';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
 //CLASSIFIEDS

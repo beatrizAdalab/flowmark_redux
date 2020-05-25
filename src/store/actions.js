@@ -1,6 +1,6 @@
 import * as TYPES from './types';
 
-//register
+//REGISTER
 export const fetchRegisterRequest = () => ({
   type: TYPES.FETCH_REGISTER_REQUEST,
 });
@@ -32,12 +32,12 @@ export const fetchRegister = (userName, userPassword) =>
     }
   };
 
-//logout
+// LOGOUT
 export const logout = () => ({
   type: TYPES.USER_LOGOUT
 });
 
-//login
+//LOGIN
 export const fetchLoginRequest = () => ({
   type: TYPES.FETCH_LOGIN_REQUEST,
 });
@@ -74,3 +74,57 @@ export const saveUserData = (userName, userPassword) => ({
   userName,
   userPassword
 });
+
+//CLASSIFIEDS
+
+export const fetchClassifiedsRequest = () => ({
+  type: TYPES.FETCH_CLASSIFIEDS_REQUEST,
+});
+
+export const fetchClassifiedsFailure = error => ({
+  type: TYPES.FETCH_CLASSIFIEDS_FAILURE,
+  error,
+});
+
+export const fetchClassifiedsSuccess = classifieds => ({
+  type: TYPES.FETCH_CLASSIFIEDS_SUCCESS,
+  classifieds,
+});
+
+export const fetchClassifieds = () =>
+  async function (dispatch, getState, { ServiceCls }) {
+    dispatch(fetchClassifiedsRequest());
+    try {
+      const classifieds = await ServiceCls.getClassifieds();
+      dispatch(fetchClassifiedsSuccess(classifieds));
+    } catch (error) {
+      dispatch(fetchClassifiedsFailure(error));
+    }
+  };
+
+//TAGS
+
+export const fetchTagsRequest = () => ({
+  type: TYPES.FETCH_TAGS_REQUEST,
+});
+
+export const fetchTagsFailure = error => ({
+  type: TYPES.FETCH_TAGS_FAILURE,
+  error,
+});
+
+export const fetchTagsSuccess = classifieds => ({
+  type: TYPES.FETCH_TAGS_SUCCESS,
+  classifieds,
+});
+
+export const fetchTags = () =>
+  async function (dispatch, getState, { ServiceCls }) {
+    dispatch(fetchTagsRequest());
+    try {
+      const classifieds = await ServiceCls.getTags();
+      dispatch(fetchTagsSuccess(classifieds));
+    } catch (error) {
+      dispatch(fetchTagsFailure(error));
+    }
+  };

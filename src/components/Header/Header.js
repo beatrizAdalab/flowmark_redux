@@ -6,31 +6,28 @@ import { LoginConsumer } from '../../context/LoginContext';
 import { faPowerOff, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Header() {
+function Header({ user, logoutUser }) {
     return (
-        <LoginConsumer>
-            {(value) => {
-                return (
-                    <nav className='navbar navbar-light bg-white fixed-top'>
-                        <div className='container'>
-                            <h1 className='navbar-brand m-0 ml-2 '> <span className='text-info'>F</span>lowMark</h1>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <Link className='text-decoration-none' to='/listClassifieds/'>
-                                    <div className='d-flex align-items-center'>
-                                        <FontAwesomeIcon className='text-info' icon={faHome} />
-                                    </div>
-                                </Link>
-                                <Link to='/login'>
-                                    <button className='btn btn-link'>
-                                        <FontAwesomeIcon className='text-info' icon={faPowerOff} />
-                                    </button>
-                                </Link>
-                            </div>
+        <nav className='navbar navbar-light bg-white fixed-top'>
+            <div className='container'>
+                <h1 className='navbar-brand m-0 ml-2 '> <span className='text-info'>F</span>lowMark</h1>
+                <div className='d-flex justify-content-center align-items-center'>
+                    <p class="m-0 pr-2 text-info">{user.userName}</p>
+                    <Link className='text-decoration-none' to='/listClassifieds/'>
+                        <div className='d-flex align-items-center'>
+                            <FontAwesomeIcon className='text-info' icon={faHome} />
                         </div>
-                    </nav>
-                )
-            }}
-        </LoginConsumer>
+                    </Link>
+
+                    <button
+                        className='btn btn-link'
+                        onClick={logoutUser}>
+                        <FontAwesomeIcon className='text-info' icon={faPowerOff} />
+                    </button>
+
+                </div>
+            </div>
+        </nav>
     )
 }
 

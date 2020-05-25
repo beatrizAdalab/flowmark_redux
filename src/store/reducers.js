@@ -11,6 +11,11 @@ const stateInitial = {
     userName: '',
     userPassword: ''
   },
+  store: {
+    classifieds: [],
+    tags: [],
+    error: ''
+  },
   ui: {
     error: null,
     isFetching: false,
@@ -86,6 +91,40 @@ export function user(state = stateInitial.user, action) {
   }
 };
 
+export function store(state = stateInitial.store, action) {
+  switch (action.type) {
+    case TYPES.FETCH_CLASSIFIEDS_REQUEST:
+      return {
+        ...state
+      }
+    case TYPES.FETCH_CLASSIFIEDS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case TYPES.FETCH_CLASSIFIEDS_SUCCESS:
+      return {
+        ...state,
+        classifieds: action.classifieds
+      }
+    case TYPES.FETCH_TAGS_REQUEST:
+      return {
+        ...state
+      }
+    case TYPES.FETCH_TAGS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case TYPES.FETCH_TAGS_SUCCESS:
+      return {
+        ...state,
+        tags: action.tags
+      }
+    default:
+      return state;
+  }
+};
 
 
 export function ui(state = stateInitial.ui, action) {
