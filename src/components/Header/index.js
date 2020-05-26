@@ -1,6 +1,6 @@
 import Header from './Header';
 import { connect } from 'react-redux';
-import { getUi, getUser } from '../../store/selectors';
+import { getUser } from '../../store/selectors';
 import { logout } from '../../store/actions';
 
 

@@ -59,7 +59,7 @@ export default {
             });
             const data = await response.json();
             console.log("classifieds", data)
-            return data.results
+            return data
         } catch (error) { console.log(error) }
     },
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { LoginConsumer } from '../../context/LoginContext';
 import { Redirect } from 'react-router-dom';
-import { api } from '../../api'
 import FormClassified from '../FormClassified'
-
 
 
 class EditClassified extends Component {
@@ -18,53 +15,36 @@ class EditClassified extends Component {
                 type: '',
                 photo: '',
             },
-            tagsStore: [],
+            tags: [],
             status: {
                 success: undefined,
-                error: ''
             }
         }
     }
 
     componentDidMount() {
+        this.getClassified();
+        this.getTags()
+    }
+
+    getClassified = () => {
         const id = this.props.match.params.id
-        this.getClassified(id)
-        this.getStore()
-    }
+        this.props.getClassified(id)
+            .then(() => {
+                this.setState({
+                    classified: this.props.cl
+                })
+            });
+    };
 
-    getStore = async (paramsApi) => {
-        this.setState({
-            tagsStore: await api.getTags(),
-        })
-    }
-
-    getClassified = async (id) => {
-        const cl = await api.getDetail(id)
-        this.setState({
-            classified: {
-                name: cl.name,
-                price: cl.price,
-                description: cl.description,
-                tags: cl.tags,
-                type: cl.type,
-                photo: cl.photo,
-            },
-            status: {
-                success: undefined,
-                error: ''
-            }
-        })
-    }
-
-    editClassified = async (id, classified) => {
-        const editApi = await api.editClassified(id, classified)
-        this.setState({
-            status: {
-                success: editApi.success,
-                error: editApi.error
-            }
-        })
-    }
+    getTags = () => {
+        this.props.getTags()
+            .then(() => {
+                this.setState({
+                    tags: this.props.tags
+                })
+            });
+    };
 
     handleChange = (e) => {
         const element = e.target
@@ -80,18 +60,28 @@ class EditClassified extends Component {
                     classified: { ...data, [name]: [...tags, value] }
                 })
             } else {
-
                 this.setState({
                     classified: { ...data, [name]: tags.filter(item => item !== value) }
                 })
             }
 
         } else {
-            console.log(value)
             this.setState({
                 classified: { ...data, [name]: value }
             })
         }
+    }
+
+    clickForm = (e) => {
+        const id = this.props.match.params.id
+        const classified = this.state.classified
+        e.preventDefault();
+        this.props.editClassified(id, classified)
+            .then(() => this.setState({
+                status: {
+                    success: !this.props.ui.error
+                }
+            }))
     }
 
     renderRedirect = () => {
@@ -101,33 +91,29 @@ class EditClassified extends Component {
         }
     }
 
-    clickForm = async (e) => {
-        const id = this.props.match.params.id
-        e.preventDefault();
-        this.editClassified(id, this.state.classified)
-    }
-
     render() {
+        const { error } = this.props.ui
         return (
-            <LoginConsumer>
-                {(value) => {
-                    return (
-                        <div className='container p-5'>
-                            <h2>Edit Classified</h2>
+            <div className='container p-5'>
+                <h2>Edit Classified</h2>
 
-                            {this.renderRedirect()}
+                {this.renderRedirect()}
 
-                            <FormClassified
-                                store={this.state.tagsStore}
-                                paramsClassified={this.state.classified}
-                                handleChange={this.handleChange}
-                                clickForm={this.clickForm}
-                                textButton={'Edit'}
-                            />
-                        </div>
-                    )
-                }}
-            </LoginConsumer>
+                {error ?
+                    <div className='alert alert-danger' role='alert'>
+                        Ups.. {error}
+                    </div> : < div className='alert alert-danger invisible ' role='alert'>
+                        Ups.. {error}
+                    </div>
+                }
+
+                <FormClassified
+                    paramsClassified={this.state.classified}
+                    handleChange={this.handleChange}
+                    clickForm={this.clickForm}
+                    textButton={'Edit'}
+                />
+            </div>
         )
     }
 }

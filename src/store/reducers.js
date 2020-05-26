@@ -14,7 +14,16 @@ const stateInitial = {
   store: {
     classifieds: [],
     tags: [],
-    error: ''
+    error: '',
+    newClassified: '',
+    classified: {
+      name: '',
+      price: 0,
+      description: '',
+      tags: [],
+      type: '',
+      photo: '',
+    }
   },
   ui: {
     error: null,
@@ -106,6 +115,48 @@ export function store(state = stateInitial.store, action) {
       return {
         ...state,
         classifieds: action.classifieds
+      }
+    case TYPES.FETCH_DETAIL_CLASSIFIED_REQUEST:
+      return {
+        ...state
+      }
+    case TYPES.FETCH_DETAIL_CLASSIFIED_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case TYPES.FETCH_DETAIL_CLASSIFIED_SUCCESS:
+      return {
+        ...state,
+        classified: action.DetailCls
+      }
+    case TYPES.FETCH_EDIT_CLASSIFIED_REQUEST:
+      return {
+        ...state
+      }
+    case TYPES.FETCH_EDIT_CLASSIFIED_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case TYPES.FETCH_EDIT_CLASSIFIED_SUCCESS:
+      return {
+        ...state,
+        classified: action.classified
+      }
+    case TYPES.FETCH_NEW_CLASSIFIED_REQUEST:
+      return {
+        ...state
+      }
+    case TYPES.FETCH_NEW_CLASSIFIED_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+    case TYPES.FETCH_NEW_CLASSIFIED_SUCCESS:
+      return {
+        ...state,
+        classified: action.classified
       }
     case TYPES.FETCH_TAGS_REQUEST:
       return {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { LoginConsumer } from '../../context/LoginContext';
 import { api } from '../../api'
 import { Redirect } from 'react-router-dom';
 import FormClassified from '../FormClassified'
@@ -26,14 +25,18 @@ class NewClassified extends Component {
     }
 
     componentDidMount() {
-        this.getStore()
+        this.getTags()
     }
 
-    getStore = async (paramsApi) => {
-        this.setState({
-            tagsStore: await api.getTags(),
-        })
-    }
+    getTags = () => {
+        this.props.getTags()
+            .then(() => {
+                this.setState({
+                    tags: this.props.tags
+                })
+            });
+    };
+
 
     createNewClassified = async (newClassified) => {
         this.setState({
@@ -69,8 +72,14 @@ class NewClassified extends Component {
     }
 
     clickForm = (e) => {
+        const classified = this.state.classified
         e.preventDefault();
-        this.createNewClassified(this.state.classified)
+        this.props.newClassified(classified)
+            .then(() => this.setState({
+                status: {
+                    success: !this.props.ui.error
+                }
+            }))
     }
 
     renderRedirect = () => {
@@ -81,40 +90,30 @@ class NewClassified extends Component {
     }
 
     render() {
+        const { error } = this.props.ui
         return (
-            <LoginConsumer>
-                {(value) => {
-                    const { success, error } = this.state.status
-                    return (
-                        <div className='container p-5'>
-                            {this.renderRedirect()}
+            <div className='container p-5'>
+                {this.renderRedirect()}
+                {error ?
+                    <div className='alert alert-danger' role='alert'>
+                        Ups.. {error}
+                    </div> : < div className='alert alert-danger invisible ' role='alert'>
+                        Ups.. {error}
+                    </div>
+                }
 
-                            {success === true ?
-                                <div className='alert alert-success' role='alert'>
-                                    Classified created
-                            </div> :
-                                success === false ?
-                                    < div className='alert alert-danger' role='alert'>
-                                        Ups..{error}
-                                    </div> :
-                                    < div className='alert invisible' role='alert'>
-                                        Ups.. {error}
-                                    </div>
-                            }
 
-                            <h2>New Classifieds</h2>
-                            <FormClassified
-                                store={this.state.tagsStore}
-                                paramsClassified={this.state.classified}
-                                handleChange={this.handleChange}
-                                clickForm={this.clickForm}
-                                textButton={'New'}
-                            />
-                        </div>
-                    )
-                }}
-            </LoginConsumer>
+                <h2>New Classifieds</h2>
+                <FormClassified
+                    store={this.state.tagsStore}
+                    paramsClassified={this.state.classified}
+                    handleChange={this.handleChange}
+                    clickForm={this.clickForm}
+                    textButton={'New'}
+                />
+            </div>
         )
+
     }
 }
 

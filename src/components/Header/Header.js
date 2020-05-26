@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LoginConsumer } from '../../context/LoginContext';
 
 // fontawesome imports
 import { faPowerOff, faHome } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +11,7 @@ function Header({ user, logoutUser }) {
             <div className='container'>
                 <h1 className='navbar-brand m-0 ml-2 '> <span className='text-info'>F</span>lowMark</h1>
                 <div className='d-flex justify-content-center align-items-center'>
-                    <p class="m-0 pr-2 text-info">{user.userName}</p>
+                    <p className="m-0 pr-2 text-info">{user.userName}</p>
                     <Link className='text-decoration-none' to='/listClassifieds/'>
                         <div className='d-flex align-items-center'>
                             <FontAwesomeIcon className='text-info' icon={faHome} />

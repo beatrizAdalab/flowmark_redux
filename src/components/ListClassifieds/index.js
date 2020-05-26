@@ -1,18 +1,20 @@
 import ListClassifieds from './ListClassifieds';
 import { connect } from 'react-redux';
-import { getUi, getStore } from '../../store/selectors';
+import { getUi, getStore, getClassifieds, getTags } from '../../store/selectors';
 import { fetchClassifieds, fetchTags } from '../../store/actions';
 
 function mapStateToProps(state, ownProps) {
   return {
     ui: getUi(state),
-    store: getStore(state)
+    store: getStore(state),
+    classifieds: getClassifieds(state),
+    tags: getTags(state)
   };
 }
 
 const mapDispatchToProps = {
-  fetchClassifieds,
-  fetchTags
+  getClassifieds: fetchClassifieds,
+  getTags: fetchTags,
 };
 
 const connected = connect(mapStateToProps, mapDispatchToProps);

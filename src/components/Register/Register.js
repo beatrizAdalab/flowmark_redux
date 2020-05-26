@@ -24,8 +24,6 @@ function Register({ registerUser, logoutUser, user }) {
         logoutUser()
     }, [])
 
-
-
     return (
         <Fragment>
             {toLoggin && user.register ? renderRedirect() :
@@ -87,14 +85,13 @@ function Register({ registerUser, logoutUser, user }) {
                 </div >
             }
         </Fragment>
-
-
     )
 }
 
 Register.propTypes = {
     user: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
+    logoutUser: PropTypes.func.isRequired
 }
 
 export default Register

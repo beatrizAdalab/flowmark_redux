@@ -14,7 +14,6 @@ import NewClassified from '../NewClassified'
 
 
 export default function App({ user }) {
-  const { login, register } = user
   return (
     <ErrorBoundary>
       <LoginContext>

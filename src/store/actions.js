@@ -75,7 +75,7 @@ export const saveUserData = (userName, userPassword) => ({
   userPassword
 });
 
-//CLASSIFIEDS
+//ALL CLASSIFIEDS
 
 export const fetchClassifiedsRequest = () => ({
   type: TYPES.FETCH_CLASSIFIEDS_REQUEST,
@@ -91,19 +91,121 @@ export const fetchClassifiedsSuccess = classifieds => ({
   classifieds,
 });
 
-export const fetchClassifieds = () =>
+export const fetchClassifieds = (params) =>
   async function (dispatch, getState, { ServiceCls }) {
     dispatch(fetchClassifiedsRequest());
     try {
-      const classifieds = await ServiceCls.getClassifieds();
-      dispatch(fetchClassifiedsSuccess(classifieds));
+      const classifieds = await ServiceCls.getClassifieds(params);
+      console.log(classifieds, 'clclclcl')
+      if (classifieds.success) {
+        dispatch(fetchClassifiedsSuccess(classifieds.results));
+      } else {
+        dispatch(fetchClassifiedsFailure(classifieds.error))
+      }
     } catch (error) {
       dispatch(fetchClassifiedsFailure(error));
     }
   };
 
-//TAGS
 
+//EDIT CLASSIFIEDS
+
+export const fetchEditClsRequest = () => ({
+  type: TYPES.FETCH_EDIT_CLASSIFIED_REQUEST,
+});
+
+export const fetchEditClsFailure = error => ({
+  type: TYPES.FETCH_EDIT_CLASSIFIED_FAILURE,
+  error,
+});
+
+export const fetchEditClsSuccess = editClassified => ({
+  type: TYPES.FETCH_EDIT_CLASSIFIED_SUCCESS,
+  editClassified,
+});
+
+export const fetchEditClassified = (id, classified) =>
+  async function (dispatch, getState, { ServiceCls }) {
+    dispatch(fetchEditClsRequest());
+    try {
+      const iseditCls = await ServiceCls.editClassified(id, classified);
+      if (iseditCls.success) {
+        dispatch(fetchEditClsSuccess(iseditCls));
+      } else {
+        dispatch(fetchEditClsFailure(iseditCls.error))
+      }
+    } catch (error) {
+      dispatch(fetchEditClsFailure(error));
+    }
+  };
+
+//NEW CLASSIFIEDS
+
+export const fetchNewClsRequest = () => ({
+  type: TYPES.FETCH_NEW_CLASSIFIED_REQUEST,
+});
+
+export const fetchNewClsFailure = error => ({
+  type: TYPES.FETCH_NEW_CLASSIFIED_FAILURE,
+  error,
+});
+
+export const fetchNewClsSuccess = editClassified => ({
+  type: TYPES.FETCH_NEW_CLASSIFIED_SUCCESS,
+  editClassified,
+});
+
+export const fetchNewClassified = (classified) =>
+  async function (dispatch, getState, { ServiceCls }) {
+    dispatch(fetchNewClsRequest());
+    try {
+      const isNewCls = await ServiceCls.newClassified(classified);
+      if (isNewCls.success) {
+        dispatch(fetchNewClsSuccess(isNewCls));
+      } else {
+        dispatch(fetchNewClsFailure(isNewCls.error))
+      }
+    } catch (error) {
+      dispatch(fetchNewClsFailure(error));
+    }
+  };
+
+//DETAIL CLASSIFIEDS
+
+export const fetchDetailClsRequest = () => ({
+  type: TYPES.FETCH_DETAIL_CLASSIFIED_REQUEST,
+});
+
+export const fetchDetailClsFailure = error => ({
+  type: TYPES.FETCH_DETAIL_CLASSIFIED_FAILURE,
+  error,
+});
+
+export const fetchDetailClsSuccess = DetailCls => ({
+  type: TYPES.FETCH_DETAIL_CLASSIFIED_SUCCESS,
+  DetailCls,
+});
+
+export const fetchDetailClassified = (id) =>
+  async function (dispatch, getState, { ServiceCls }) {
+    dispatch(fetchDetailClsRequest());
+    try {
+      const DetailCls = await ServiceCls.getDetail(id);
+      const classified = {
+        name: DetailCls.name,
+        price: DetailCls.price,
+        description: DetailCls.description,
+        tags: DetailCls.tags,
+        type: DetailCls.type,
+        photo: DetailCls.photo,
+      };
+      dispatch(fetchDetailClsSuccess(classified));
+    } catch (error) {
+      dispatch(fetchDetailClsFailure(error));
+    }
+  };
+
+//TAGS
 export const fetchTagsRequest = () => ({
   type: TYPES.FETCH_TAGS_REQUEST,
 });
@@ -113,17 +215,17 @@ export const fetchTagsFailure = error => ({
   error,
 });
 
-export const fetchTagsSuccess = classifieds => ({
+export const fetchTagsSuccess = tags => ({
   type: TYPES.FETCH_TAGS_SUCCESS,
-  classifieds,
+  tags,
 });
 
 export const fetchTags = () =>
   async function (dispatch, getState, { ServiceCls }) {
     dispatch(fetchTagsRequest());
     try {
-      const classifieds = await ServiceCls.getTags();
-      dispatch(fetchTagsSuccess(classifieds));
+      const tags = await ServiceCls.getTags();
+      dispatch(fetchTagsSuccess(tags));
     } catch (error) {
       dispatch(fetchTagsFailure(error));
     }
