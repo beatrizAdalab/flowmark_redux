@@ -1,20 +1,24 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Form from '../Form'
+import Input from '../Form/Input';
 import PropTypes from 'prop-types';
 import userStorage from '../../storage'
 
 
+
 function Register({ registerUser, logoutUser, user }) {
-    const [userName, setUserName] = useState('');
-    const [userPassword, setUserPassword] = useState('');
     const [toLoggin, setToLoggin] = useState(false);
 
     const renderRedirect = () => {
         return <Redirect to='/login' />
     }
 
-    const checkRegister = async (e) => {
+    const checkRegister = async (e, value) => {
         e.preventDefault()
+        let userName = value.userName
+        let userPassword = value.userPassword
+
         setToLoggin(true)
         await registerUser(userName, userPassword)
         userStorage.setUser({ userName, userPassword })
@@ -39,44 +43,16 @@ function Register({ registerUser, logoutUser, user }) {
                     < div className=' d-flex justify-content-center pt-4' >
                         <div className='d-flex flex-column justify-content-center align-items-center container-form-access'>
                             <h2 className='text-center'>Welcome to FlowMark</h2>
-                            <form
-                                className='pt-5 w-100'
-                                onSubmit={checkRegister}
-                            >
-                                <div className='form-group'>
-                                    <label htmlFor='userName'>User Name <small className='text-muted'> * </small> </label>
-                                    <input
-                                        className='form-control'
-                                        required
-                                        type='text'
-                                        id='userName'
-                                        name='userName'
-                                        value={userName}
-                                        onChange={e => setUserName(e.target.value)}
-                                    />
-                                </div>
 
-                                <div className='form-group'>
-                                    <label htmlFor='userPassword'>User Password <small className='text-muted'> * </small> </label>
-                                    <input
-                                        className='form-control'
-                                        required
-                                        type='password'
-                                        id='userPassword'
-                                        name='userPassword'
-                                        value={userPassword}
-                                        onChange={e => setUserPassword(e.target.value)}
-                                    />
-                                </div>
+                            <Form formSubmit={checkRegister} textBtn='Register' initialValues={{ userName: '', userPassword: '' }}>
+                                {(handleChange) => (
+                                    <Fragment>
+                                        <Input type='text' name='userName' label='User Name' onChange={handleChange} />
+                                        <Input type='password' name='userPassword' label='User Password' onChange={handleChange} />
+                                    </Fragment>
+                                )}
+                            </Form>
 
-                                <div className='form-group d-flex justify-content-center pt-2'>
-                                    <button
-                                        className='btn btn-info rounded'
-                                        type='submit'>
-                                        Register
-                                        </button>
-                                </div>
-                            </form>
                             <Link to='/login'>
                                 <p className='text-decoration-none text-info'>Have an account? </p>
                             </Link>

@@ -1,27 +1,29 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Form from '../Form'
+import Input from '../Form/Input';
 import PropTypes from 'prop-types';
 import userStorage from '../../storage'
 
+let dataUser = userStorage.getUser();
 
 function Login({ loginUser, saveUserData, user }) {
-    const [userName, setUserName] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+    const [initialValues, setInitialValues] = useState({ userName: dataUser.userName, userPassword: dataUser.userPassword });
 
     const renderRedirect = () => {
         return <Redirect to={`/listClassifieds/?all`} />
     }
 
-    const checkLogin = async (e) => {
+    const checkLogin = async (e, value) => {
         e.preventDefault()
+        let userName = value.userName
+        let userPassword = value.userPassword
+
         loginUser(userName, userPassword)
-        userStorage.setUser({ userName, userPassword })
+            .then(() => userStorage.setUser({ userName, userPassword }))
     }
 
     useEffect(() => {
-        const dataUser = userStorage.getUser();
-        setUserName(dataUser.userName);
-        setUserPassword(dataUser.userPassword)
         saveUserData(dataUser.userName, dataUser.userPassword)
     }, [])
 
@@ -37,46 +39,21 @@ function Login({ loginUser, saveUserData, user }) {
                         </div>
                     }
 
+
                     <div className=' d-flex justify-content-center pt-4'>
                         <div className='d-flex flex-column justify-content-center align-items-center container-form-access'>
                             <h2 className='text-center'>Login</h2>
-                            <form
-                                className='pt-5 w-100'
-                                onSubmit={checkLogin}>
-                                <div className='form-group'>
-                                    <label htmlFor='userName'>User Name <small className='text-muted'> * </small> </label>
-                                    <input
-                                        className='form-control'
-                                        required
-                                        type='text'
-                                        id='userName'
-                                        name='userName'
-                                        value={userName}
-                                        onChange={e => setUserName(e.target.value)}
-                                    />
-                                </div>
 
-                                <div className='form-group'>
-                                    <label htmlFor='userPassword'>User Password <small className='text-muted'> * </small> </label>
-                                    <input
-                                        className='form-control'
-                                        required
-                                        type='password'
-                                        id='userPassword'
-                                        name='userPassword'
-                                        value={userPassword}
-                                        onChange={e => setUserPassword(e.target.value)}
-                                    />
-                                </div>
+                            <Form formSubmit={checkLogin} textBtn='Login' initialValues={initialValues}>
+                                {(handleChange, values) => (
 
-                                <div className='form-group d-flex justify-content-center pt-2'>
-                                    <button
-                                        className='btn btn-info rounded'
-                                        type='submit'>
-                                        Login
-                                   </button>
-                                </div>
-                            </form>
+                                    <Fragment>
+                                        {console.log(initialValues, user, 'dataLogin')}
+                                        <Input type='text' name='userName' label='User Name' onChange={handleChange} value={values} />
+                                        <Input type='password' name='userPassword' label='User Password' onChange={handleChange} value={values} />
+                                    </Fragment>
+                                )}
+                            </Form>
 
                             <Link to='/register'>
                                 <p className='text-decoration-none text-info'>

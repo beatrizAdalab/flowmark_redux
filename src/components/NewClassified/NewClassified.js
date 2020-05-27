@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { api } from '../../api'
 import { Redirect } from 'react-router-dom';
 import FormClassified from '../FormClassified'
 
@@ -37,12 +36,6 @@ class NewClassified extends Component {
             });
     };
 
-
-    createNewClassified = async (newClassified) => {
-        this.setState({
-            status: await api.newClassified(newClassified)
-        })
-    }
 
     handleChange = (e) => {
         const element = e.target
