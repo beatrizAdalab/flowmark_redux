@@ -89,8 +89,6 @@ export function user(state = stateInitial.user, action) {
         ...state,
         login: false,
         register: false,
-        errorLogin: '',
-        errorRegister: '',
         userName: '',
         userPassword: '',
       }

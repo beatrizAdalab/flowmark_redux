@@ -38,17 +38,13 @@ function Login({ loginUser, saveUserData, user }) {
                             Ups.. {user.errorLogin}
                         </div>
                     }
-
-
                     <div className=' d-flex justify-content-center pt-4'>
                         <div className='d-flex flex-column justify-content-center align-items-center container-form-access'>
                             <h2 className='text-center'>Login</h2>
 
                             <Form formSubmit={checkLogin} textBtn='Login' initialValues={initialValues}>
                                 {(handleChange, values) => (
-
                                     <Fragment>
-                                        {console.log(initialValues, user, 'dataLogin')}
                                         <Input type='text' name='userName' label='User Name' onChange={handleChange} value={values} />
                                         <Input type='password' name='userPassword' label='User Password' onChange={handleChange} value={values} />
                                     </Fragment>
@@ -67,8 +63,6 @@ function Login({ loginUser, saveUserData, user }) {
         </Fragment>
     )
 }
-
-
 
 export default Login
 

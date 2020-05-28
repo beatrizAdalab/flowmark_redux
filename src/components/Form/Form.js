@@ -7,17 +7,14 @@ const Form = ({ initialValues, formSubmit, children, textBtn }) => {
   const handleChange = event =>
     setValue({ ...value, [event.target.name]: event.target.value });
 
-  console.log('initialValues in form', values)
-
   const valuesInput = value
 
   return (
     < form
       className='pt-5 w-100'
-      onSubmit={(e) => formSubmit(e, value)}
-    >
-      {children(handleChange, valuesInput)}
+      onSubmit={(e) => formSubmit(e, value)}>
 
+      {children(handleChange, valuesInput)}
 
       <div className='form-group d-flex justify-content-center pt-2'>
         <button
