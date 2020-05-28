@@ -1,5 +1,8 @@
 import * as actions from './actions';
-import * as TYPES from './types'
+import * as TYPES from './types';
+import ServiceCls from '../ServiceCls'
+
+jest.mock('../ServiceCls')
 
 describe('actions', () => {
   describe('logout', () => {
@@ -38,9 +41,7 @@ describe('fetchRegister', () => {
 
   test('should dispatch FETCH_REGISTER_REQUEST and FETCH_REGISTER_SUCCESS action', async () => {
     const isRegister = { success: true };
-    const ServiceCls = {
-      register: jest.fn().mockReturnValueOnce(isRegister)
-    };
+    ServiceCls.register.mockReturnValueOnce(isRegister)
 
     await action(dispatch, getState, { ServiceCls });
 
@@ -60,9 +61,7 @@ describe('fetchRegister', () => {
   test('should dispatch FETCH_REGISTER_REQUEST and FETCH_REGISTER_FAILURE action', async () => {
     const error = 'error';
     const isRegister = { success: false, error: 'success.error' };
-    const ServiceCls = {
-      register: jest.fn().mockReturnValueOnce(isRegister).mockRejectedValue(error)
-    };
+    ServiceCls.register.mockReturnValueOnce(isRegister).mockRejectedValue(error)
 
     await action(dispatch, getState, { ServiceCls });
 
