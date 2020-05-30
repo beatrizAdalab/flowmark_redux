@@ -20,3 +20,4 @@ const FormClassifiedConnected = connected(FormClassified);
 
 
 export default FormClassifiedConnected;
+

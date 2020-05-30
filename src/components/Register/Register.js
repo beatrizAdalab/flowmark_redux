@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import userStorage from '../../storage'
 
 
-
 function Register({ registerUser, logoutUser, user }) {
     const [toLoggin, setToLoggin] = useState(false);
 
@@ -19,9 +18,10 @@ function Register({ registerUser, logoutUser, user }) {
         let userName = value.userName
         let userPassword = value.userPassword
 
-        setToLoggin(true)
         await registerUser(userName, userPassword)
         userStorage.setUser({ userName, userPassword })
+
+        setToLoggin(true)
     }
 
     useEffect(() => {
@@ -45,10 +45,10 @@ function Register({ registerUser, logoutUser, user }) {
                             <h2 className='text-center'>Welcome to FlowMark</h2>
 
                             <Form formSubmit={checkRegister} textBtn='Register' initialValues={{ userName: '', userPassword: '' }}>
-                                {(handleChange) => (
+                                {(handleChange, values) => (
                                     <Fragment>
-                                        <Input type='text' name='userName' label='User Name' onChange={handleChange} />
-                                        <Input type='password' name='userPassword' label='User Password' onChange={handleChange} />
+                                        <Input type='text' name='userName' label='User Name' onChange={handleChange} value={values} />
+                                        <Input type='password' name='userPassword' label='User Password' onChange={handleChange} value={values} />
                                     </Fragment>
                                 )}
                             </Form>

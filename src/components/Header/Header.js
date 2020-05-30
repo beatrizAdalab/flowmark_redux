@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // fontawesome imports
 import { faPowerOff, faHome } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +29,11 @@ function Header({ user, logoutUser }) {
             </div>
         </nav>
     )
-}
+};
 
 export default Header;
+
+Header.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+};

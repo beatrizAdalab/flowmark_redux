@@ -9,7 +9,7 @@ function mapStateToProps(state, ownProps) {
     ui: getUi(state),
     user: getUser(state)
   };
-}
+};
 
 const mapDispatchToProps = {
   logoutUser: logout

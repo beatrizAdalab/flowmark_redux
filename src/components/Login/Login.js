@@ -5,9 +5,10 @@ import Input from '../Form/Input';
 import PropTypes from 'prop-types';
 import userStorage from '../../storage'
 
-let dataUser = userStorage.getUser();
 
 function Login({ loginUser, saveUserData, user }) {
+    let dataUser = userStorage.getUser();
+
     const [initialValues, setInitialValues] = useState({ userName: dataUser.userName, userPassword: dataUser.userPassword });
 
     const renderRedirect = () => {
@@ -20,7 +21,7 @@ function Login({ loginUser, saveUserData, user }) {
         let userPassword = value.userPassword
 
         loginUser(userName, userPassword)
-            .then(() => userStorage.setUser({ userName, userPassword }))
+        userStorage.setUser({ userName, userPassword })
     }
 
     useEffect(() => {
@@ -62,11 +63,16 @@ function Login({ loginUser, saveUserData, user }) {
             }
         </Fragment>
     )
-}
+};
 
-export default Login
+export default Login;
 
-
+Login.propTypes = {
+    user: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
+    saveUserData: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+};
 
 
 

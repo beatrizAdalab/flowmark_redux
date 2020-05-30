@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getClassified, getTags, getUi } from '../../store/selectors';
 import { fetchDetailClassified, fetchTags, fetchNewClassified } from '../../store/actions';
 
+
 function mapStateToProps(state, ownProps) {
   return {
     cl: getClassified(state),

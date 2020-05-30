@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactImageFallback from 'react-image-fallback';
 import nophoto from '../../assets/images/nophoto.png';
+import PropTypes from 'prop-types';
 
 // get our fontawesome imports
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
@@ -47,13 +48,17 @@ const CardClassified = ({ classified }) => {
                         className='text-decoration-none text-body'
                     >
                         <FontAwesomeIcon className='mr-2 text-edit' icon={faPencilAlt} />
-                                    Edit
-                            </Link>
+                            Edit
+                     </Link>
                 </div>
             </div>
         </div>
     );
-
 };
 
 export default CardClassified;
+
+
+CardClassified.propTypes = {
+    classified: PropTypes.object.isRequired,
+}

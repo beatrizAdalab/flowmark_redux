@@ -10,6 +10,7 @@ import ListClassifieds from '../ListClassifieds'
 import DetailClassifieds from '../DetailClassified'
 import EditClassifieds from '../EditClassified'
 import NewClassified from '../NewClassified'
+import PropTypes from 'prop-types';
 
 
 export default function App() {
@@ -31,6 +32,13 @@ export default function App() {
       </div>
     </ErrorBoundary>
   )
+}
+
+
+App.propTypes = {
+  user: PropTypes.object.isRequired,
+  ui: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 

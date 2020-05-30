@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class FormClassified extends Component {
     constructor(props) {
@@ -18,7 +19,6 @@ class FormClassified extends Component {
     render() {
         const { name, price, description, tags, type, photo } = this.props.paramsClassified
         const { handleChange, clickForm, textButton, allTags } = this.props
-
 
         return (
             <form
@@ -138,16 +138,21 @@ class FormClassified extends Component {
                     </button>
                 </div>
             </form>
-
         )
-
     }
-}
+};
 
 export default FormClassified;
 
-
-
+FormClassified.propTypes = {
+    allTags: PropTypes.array.isRequired,
+    cl: PropTypes.object.isRequired,
+    paramsClassified: PropTypes.object.isRequired,
+    clickForm: PropTypes.func.isRequired,
+    getClassified: PropTypes.func.isRequired,
+    getTags: PropTypes.func.isRequired,
+    textButton: PropTypes.string.isRequired,
+};
 
 
 

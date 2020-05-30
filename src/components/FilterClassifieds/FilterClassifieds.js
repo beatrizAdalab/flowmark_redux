@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 //fontawesome imports
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -159,3 +160,10 @@ class FilterClassifieds extends Component {
 }
 
 export default FilterClassifieds;
+
+FilterClassifieds.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    newSearchAll: PropTypes.func.isRequired,
+    paramsFilter: PropTypes.object.isRequired,
+    tags: PropTypes.array.isRequired,
+};

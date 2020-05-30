@@ -1,12 +1,14 @@
 import React, { useEffect, } from 'react';
 import ReactImageFallback from 'react-image-fallback';
-import nophoto from '../../assets/images/nophoto.png'
+import nophoto from '../../assets/images/nophoto.png';
+import PropTypes from 'prop-types';
 
 
 function DetailClassified({ cl, getClassified, match }) {
 
+
     useEffect(() => {
-        const id = match.params.id
+        const { id } = match.params
         getClassified(id)
     }, [])
 
@@ -46,9 +48,16 @@ function DetailClassified({ cl, getClassified, match }) {
             </div>
         </div>
     )
-}
+};
 
+export default DetailClassified;
 
-export default DetailClassified
+DetailClassified.propTypes = {
+    cl: PropTypes.object.isRequired,
+    getClassified: PropTypes.func.isRequired,
+    getTags: PropTypes.func.isRequired,
+    tags: PropTypes.array.isRequired,
+    ui: PropTypes.object.isRequired,
+};
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
 
 const Form = ({ initialValues, formSubmit, children, textBtn }) => {
   const values = initialValues
@@ -7,7 +7,7 @@ const Form = ({ initialValues, formSubmit, children, textBtn }) => {
   const handleChange = event =>
     setValue({ ...value, [event.target.name]: event.target.value });
 
-  const valuesInput = value
+  const valuesInput = value;
 
   return (
     < form
@@ -27,7 +27,12 @@ const Form = ({ initialValues, formSubmit, children, textBtn }) => {
       </div>
     </form >
   )
-}
+};
 
+export default Form;
 
-export default Form
+Form.propTypes = {
+  formSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  textBtn: PropTypes.string
+};

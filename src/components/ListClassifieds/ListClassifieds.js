@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { urlRouter } from '../../router';
 import FilterClassifieds from '../FilterClassifieds'
 import CardClassified from '../CardClassified'
+import PropTypes from 'prop-types';
 
 
 function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store, location }) {
@@ -16,7 +17,6 @@ function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store
 
     useEffect(() => {
         const url = location.search
-        console.log(url, 'urllll')
         const paramsUrl = urlRouter.searchStringToObject(url)
         const objectFilter = _buildObjectFilter(paramsUrl)
         getClassifieds(objectFilter)
@@ -85,7 +85,7 @@ function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store
 
 const _buildObjectFilter = (search) => {
 
-    let keys = ['name', 'price', 'venta', 'tag']
+    let keys = ['name', 'price', 'venta', 'tag'];
 
     const ObjectKey = keys.reduce((accumulator, key) => {
 
@@ -101,3 +101,11 @@ const _buildObjectFilter = (search) => {
 }
 
 export default ListClassifieds;
+
+ListClassifieds.propTypes = {
+    classifieds: PropTypes.array.isRequired,
+    store: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
+    getClassifieds: PropTypes.func.isRequired,
+    getTags: PropTypes.func.isRequired,
+};

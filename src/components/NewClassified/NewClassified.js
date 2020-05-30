@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import FormClassified from '../FormClassified'
+import PropTypes from 'prop-types';
 
 
 class NewClassified extends Component {
@@ -25,7 +26,7 @@ class NewClassified extends Component {
 
     componentDidMount() {
         this.getTags()
-    }
+    };
 
     getTags = () => {
         this.props.getTags()
@@ -35,7 +36,6 @@ class NewClassified extends Component {
                 })
             });
     };
-
 
     handleChange = (e) => {
         const element = e.target
@@ -73,14 +73,14 @@ class NewClassified extends Component {
                     success: !this.props.ui.error
                 }
             }))
-    }
+    };
 
     renderRedirect = () => {
         const redirect = this.state.status.success
         if (redirect) {
             return <Redirect to={`/listClassifieds/?name=${this.state.classified.name}`} />
         }
-    }
+    };
 
     render() {
         const { error } = this.props.ui
@@ -106,8 +106,16 @@ class NewClassified extends Component {
                 />
             </div>
         )
-
     }
 }
 
 export default NewClassified;
+
+NewClassified.propTypes = {
+    cl: PropTypes.object.isRequired,
+    newClassified: PropTypes.func.isRequired,
+    getClassified: PropTypes.func.isRequired,
+    getTags: PropTypes.func.isRequired,
+    tags: PropTypes.array.isRequired,
+    ui: PropTypes.object.isRequired,
+};

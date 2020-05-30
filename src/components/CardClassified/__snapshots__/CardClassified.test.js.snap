@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardClassified snapshot testing 1`] = `
+<div
+  className="col-12 col-md-4 col-lg-4 mb-5"
+>
+  <div
+    className="card shadow-sm bg-white rounded d-flex flex-column justify-content-between h-100"
+  >
+    <div>
+      <Link
+        className="text-decoration-none text-body"
+        to="/detailClassifieds/5e43096e99660405061db854"
+      >
+        <div
+          className="card-container-img card-image "
+        >
+          <ReactImageFallback
+            alt="Primero 4"
+            className="card-img card-image border-bottom"
+            fallbackImage="nophoto.png"
+            initialImage={null}
+            src="https://pbs.twimg.com/media/Dpu128FWwAI_Bru?format=jpg"
+          />
+        </div>
+        <div
+          className=""
+        >
+          <span
+            className="m-2 badge badge-danger"
+          >
+            10000
+             €
+          </span>
+        </div>
+        <div
+          className="card-body p-2"
+        >
+          <h5
+            className="card-title"
+          >
+             
+            Primero 4
+          </h5>
+          <p>
+             
+            cambio
+             
+          </p>
+          <div>
+            <span
+              className="badge badge-pill mr-2 mb-2 badge-secondary"
+              key="0"
+            >
+               
+              lifestyle
+               
+            </span>
+            <span
+              className="badge badge-pill mr-2 mb-2 badge-secondary"
+              key="1"
+            >
+               
+              work
+               
+            </span>
+            <span
+              className="badge badge-pill mr-2 mb-2 badge-secondary"
+              key="2"
+            >
+               
+              mobile
+               
+            </span>
+          </div>
+        </div>
+      </Link>
+    </div>
+    <div
+      className="card-footer bg-transparent p-2"
+    >
+      <Link
+        className="text-decoration-none text-body"
+        to="/editClassifieds/5e43096e99660405061db854"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className="mr-2 text-edit"
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f303",
+                "M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z",
+              ],
+              "iconName": "pencil-alt",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Edit
+      </Link>
+    </div>
+  </div>
+</div>
+`;

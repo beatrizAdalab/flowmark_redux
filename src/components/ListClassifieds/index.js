@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getUi, getStore, getClassifieds, getTags } from '../../store/selectors';
 import { fetchClassifieds, fetchTags } from '../../store/actions';
 
+
 function mapStateToProps(state, ownProps) {
   return {
     ui: getUi(state),
@@ -20,5 +21,5 @@ const mapDispatchToProps = {
 const connected = connect(mapStateToProps, mapDispatchToProps);
 const ListClassifidesConnected = connected(ListClassifieds);
 
-
 export default ListClassifidesConnected;
+

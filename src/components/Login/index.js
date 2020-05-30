@@ -18,6 +18,5 @@ const mapDispatchToProps = {
 const connected = connect(mapStateToProps, mapDispatchToProps);
 const LoginConnected = connected(Login);
 
-
 export default LoginConnected;
 
