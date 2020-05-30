@@ -40,7 +40,6 @@ function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store
     return (
         <div className='container'>
             <div className='d-flex flex-column pb-3'>
-                {console.log(paramsFilter, 'paramsFilter')}
                 <FilterClassifieds
                     tags={tags}
                     paramsFilter={paramsFilter}

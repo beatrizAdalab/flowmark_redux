@@ -96,7 +96,6 @@ export const fetchClassifieds = (params) =>
     dispatch(fetchClassifiedsRequest());
     try {
       const classifieds = await ServiceCls.getClassifieds(params);
-      console.log(classifieds, 'clclclcl')
       if (classifieds.success) {
         dispatch(fetchClassifiedsSuccess(classifieds.results));
       } else {
