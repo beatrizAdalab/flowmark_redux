@@ -86,7 +86,9 @@ class NewClassified extends Component {
         const { error } = this.props.ui
         return (
             <div className='container p-5'>
+
                 {this.renderRedirect()}
+
                 {error ?
                     <div className='alert alert-danger' role='alert'>
                         Ups.. {error}

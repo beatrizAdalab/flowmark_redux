@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const CardClassified = ({ classified }) => {
-
     return (
         <div className='col-12 col-md-4 col-lg-4 mb-5'>
             <div className='card shadow-sm bg-white rounded d-flex flex-column justify-content-between h-100'>

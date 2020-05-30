@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { urlRouter } from '../../router';
-import FilterClassifieds from '../FilterClassifieds'
-import CardClassified from '../CardClassified'
+import FilterClassifieds from '../FilterClassifieds';
+import CardClassified from '../CardClassified';
 import PropTypes from 'prop-types';
+import Loading from '../Loading';
 
 
 function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store, location }) {
@@ -72,18 +73,13 @@ function ListClassifieds({ ui, tags, classifieds, getTags, getClassifieds, store
                             <h4 className='text-secondary'>Ups! Its seems that there is no classifieds... try again</h4>
                         </div>
                 :
-                <div className='d-flex align-items-center justify-content-center p-5'>
-                    <div className='spinner-grow text-info p-5' role='status'>
-                        <span className='sr-only'>Loading...</span>
-                    </div>
-                </div>
+                <Loading />
             }
         </div>
     )
 }
 
 const _buildObjectFilter = (search) => {
-
     let keys = ['name', 'price', 'venta', 'tag'];
 
     const ObjectKey = keys.reduce((accumulator, key) => {

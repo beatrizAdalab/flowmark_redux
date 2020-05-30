@@ -89,6 +89,8 @@ export function user(state = stateInitial.user, action) {
         ...state,
         login: false,
         register: false,
+        errorLogin: '',
+        errorRegister: '',
         userName: '',
         userPassword: '',
       }
@@ -112,7 +114,8 @@ export function store(state = stateInitial.store, action) {
     case TYPES.FETCH_CLASSIFIEDS_SUCCESS:
       return {
         ...state,
-        classifieds: action.classifieds
+        classifieds: action.classifieds,
+        error: ''
       }
     case TYPES.FETCH_DETAIL_CLASSIFIED_REQUEST:
       return {

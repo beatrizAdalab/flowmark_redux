@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 function DetailClassified({ cl, getClassified, match }) {
 
-
     useEffect(() => {
         const { id } = match.params
         getClassified(id)
