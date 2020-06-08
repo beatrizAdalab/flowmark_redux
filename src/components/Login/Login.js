@@ -7,7 +7,9 @@ import userStorage from '../../storage'
 
 
 function Login({ loginUser, saveUserData, user }) {
-    let dataUser = userStorage.getUser();
+    const initialDataUser = { username: '', userPassword: '' }
+    let dataUserLocal = userStorage.getUser();
+    let dataUser = dataUserLocal ? dataUserLocal : initialDataUser;
 
     const [initialValues, setInitialValues] = useState({ userName: dataUser.userName, userPassword: dataUser.userPassword });
 
