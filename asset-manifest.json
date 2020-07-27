@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/beatrizAdalab/flowmark_redux/static/css/main.1213e427.chunk.css",
-    "main.js": "/beatrizAdalab/flowmark_redux/static/js/main.cc94a0b7.chunk.js",
-    "main.js.map": "/beatrizAdalab/flowmark_redux/static/js/main.cc94a0b7.chunk.js.map",
-    "runtime-main.js": "/beatrizAdalab/flowmark_redux/static/js/runtime-main.feb94233.js",
-    "runtime-main.js.map": "/beatrizAdalab/flowmark_redux/static/js/runtime-main.feb94233.js.map",
-    "static/css/2.47e06e2e.chunk.css": "/beatrizAdalab/flowmark_redux/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.ac551bd5.chunk.js": "/beatrizAdalab/flowmark_redux/static/js/2.ac551bd5.chunk.js",
-    "static/js/2.ac551bd5.chunk.js.map": "/beatrizAdalab/flowmark_redux/static/js/2.ac551bd5.chunk.js.map",
-    "index.html": "/beatrizAdalab/flowmark_redux/index.html",
-    "precache-manifest.0e3736e73812dedb1416607642062d9d.js": "/beatrizAdalab/flowmark_redux/precache-manifest.0e3736e73812dedb1416607642062d9d.js",
-    "service-worker.js": "/beatrizAdalab/flowmark_redux/service-worker.js",
-    "static/css/2.47e06e2e.chunk.css.map": "/beatrizAdalab/flowmark_redux/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.1213e427.chunk.css.map": "/beatrizAdalab/flowmark_redux/static/css/main.1213e427.chunk.css.map",
-    "static/js/2.ac551bd5.chunk.js.LICENSE.txt": "/beatrizAdalab/flowmark_redux/static/js/2.ac551bd5.chunk.js.LICENSE.txt"
+    "main.css": "/flowmark_redux/static/css/main.1213e427.chunk.css",
+    "main.js": "/flowmark_redux/static/js/main.4d7987ba.chunk.js",
+    "main.js.map": "/flowmark_redux/static/js/main.4d7987ba.chunk.js.map",
+    "runtime-main.js": "/flowmark_redux/static/js/runtime-main.f5b95c4d.js",
+    "runtime-main.js.map": "/flowmark_redux/static/js/runtime-main.f5b95c4d.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/flowmark_redux/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.ac551bd5.chunk.js": "/flowmark_redux/static/js/2.ac551bd5.chunk.js",
+    "static/js/2.ac551bd5.chunk.js.map": "/flowmark_redux/static/js/2.ac551bd5.chunk.js.map",
+    "index.html": "/flowmark_redux/index.html",
+    "precache-manifest.836259906ee035888153c83cd06f266d.js": "/flowmark_redux/precache-manifest.836259906ee035888153c83cd06f266d.js",
+    "service-worker.js": "/flowmark_redux/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/flowmark_redux/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.1213e427.chunk.css.map": "/flowmark_redux/static/css/main.1213e427.chunk.css.map",
+    "static/js/2.ac551bd5.chunk.js.LICENSE.txt": "/flowmark_redux/static/js/2.ac551bd5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.feb94233.js",
+    "static/js/runtime-main.f5b95c4d.js",
     "static/css/2.47e06e2e.chunk.css",
     "static/js/2.ac551bd5.chunk.js",
     "static/css/main.1213e427.chunk.css",
-    "static/js/main.cc94a0b7.chunk.js"
+    "static/js/main.4d7987ba.chunk.js"
   ]
 }
